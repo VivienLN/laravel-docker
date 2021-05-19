@@ -17,6 +17,9 @@ Requirements:
 docker-compose up -d
 ```
 
+### Error on laravel container
+On windows, you may encounter this error in the laravel container: `/usr/local/bin/docker-php-entrypoint: 9: exec: docker/laravel_init.sh: not found`. Change the encoding of the file `docker/laravel_init.sh` to CRLF => LF to fix.
+
 ## Seeding
 ```
 docker exec laravel php artisan migrate:fresh --seed
