@@ -1,0 +1,51 @@
+version: '3'
+services:
+    db:
+        image: mysql:8.0
+        container_name: db
+        environment:
+            - "MYSQL_DATABASE=${DB_DATABASE}"
+            - "MYSQL_USER=${DB_USERNAME}"
+            - "MYSQL_PASSWORD=${DB_PASSWORD}"
+            - "MYSQL_RANDOM_ROOT_PASSWORD=1"
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - laravel
+    laravel:
+        image: laravel
+        container_name: laravel
+        depends_on:
+            - db
+        working_dir: /var/www/
+        build:
+            context: .
+            dockerfile: docker/laravel.dockerfile
+        volumes:
+            - .:/var/www/
+        command:
+            - docker/laravel_init.sh
+        networks:
+            - laravel
+    nginx:
+        image: nginx
+        container_name: nginx
+        depends_on:
+            - db
+            - laravel
+        build:
+            context: .
+            dockerfile: docker/nginx.dockerfile
+        volumes:
+            - .:/var/www/
+        ports:
+            - 80:80
+            - 443:443
+        networks:
+            - laravel
+
+networks:
+    laravel:
+        driver: bridge
+volumes:
+    dbdata:
