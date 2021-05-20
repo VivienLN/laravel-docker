@@ -5,12 +5,16 @@ Requirements:
 - Git (optional, to get these sources)
 
 ## Create a new laravel app
-* Clone or download this repo: `git clone https://github.com/VivienLN/laravel-docker.git <FOLDER>`
-* Copy `.env.example` to a new `.env` file. Everything should be already configured as you need.
+```
+git clone https://github.com/VivienLN/laravel-docker.git <MYPROJECT>
+cd <MYPROJECT>
+cp .env.example .env
+```
+Everything in `.env` should be already configured as you need, but feel free to change things like app name, mysql user name or database name. `DB_HOST` should remain as it is though, because it's referencing the `db` container name.
 
 > Note: If `DB_USER` is root, `DB_PASSWORD` cannot be empty, or the mysql container will crash on startup (security on mysql container's end).
 
-> Note: `DB_HOST:db` should remain
+> Note: If you don't want to use git, just download and unzip on your project directory.
 
 ## Run laravel app
 ```
