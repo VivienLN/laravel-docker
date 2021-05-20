@@ -8,6 +8,7 @@ Requirements:
 ```
 git clone https://github.com/VivienLN/laravel-docker.git <MYPROJECT>
 cd <MYPROJECT>
+rm -rf .git
 cp .env.example .env
 ```
 Everything in `.env` should be already configured as you need, but feel free to change things like app name, mysql user name or database name. `DB_HOST` should remain as it is though, because it's referencing the `db` container name.
