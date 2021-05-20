@@ -12,6 +12,9 @@ services:
             - dbdata:/var/lib/mysql
         networks:
             - laravel
+        ports:
+            - 3306:3306
+            - 33060:33060
     laravel:
         container_name: laravel
         depends_on:
