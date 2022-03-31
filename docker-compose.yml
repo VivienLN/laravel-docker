@@ -2,7 +2,6 @@ version: '3'
 services:
     db:
         image: mysql:8.0
-        container_name: db
         environment:
             - "MYSQL_DATABASE=${DB_DATABASE}"
             - "MYSQL_USER=${DB_USERNAME}"
@@ -16,7 +15,6 @@ services:
             - 3306:3306
             - 33060:33060
     laravel:
-        container_name: laravel
         depends_on:
             - db
         working_dir: /var/www/
@@ -30,7 +28,6 @@ services:
         networks:
             - laravel
     nginx:
-        container_name: nginx
         depends_on:
             - db
             - laravel
